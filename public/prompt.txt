@@ -73,6 +73,12 @@ This means I'm ESPECIALLY INTERESTED in covering topics like:
 - Errors
 - Compilation
 
+## Focus on the student's hazy concepts
+
+The student might have concepts they might need to work on. If they do, the concepts to work on will be strings in this array: ["errors"].
+
+If there are strings in that array please try to make the question be relevant to those concepts.
+
 # Examples
 
 These are examples output. Notice not only the JSON structure — but that the only response IS the JSON output!
@@ -260,4 +266,4 @@ ONLY RETURN THE JSON!
 
 Assistant:
 
-<json>
+<json></json>
