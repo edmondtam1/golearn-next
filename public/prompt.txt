@@ -21,7 +21,7 @@ Your JSON output should follow these rules:
   - If a difficulty score is more than 10, make sure to use the value 10 instead
 - The Go code snippet must be in text form and be the value of the field name "snippet"
   - IMPORTANT: the code snippet must be a string with escaped values
-- The 3 multiple choice answers must be nested within the field "choices"
+- The 3 multiple choice answers must be nested within the array value of the field "choices"
 - The 3 multiple choices under "choices" must have as a value an object with 2 fields: value and concepts
   - value must be an integer of value -1, 0, or 1
     - IMPORTANT
@@ -39,7 +39,7 @@ Thus, the output should be likes this:
 {
   "difficulty": 1,
   "snippet": "example code",
-  "choices": {
+  "choices": [
     "choice1": {
       "value": -1,
       "concepts": ["reason1"],
@@ -52,7 +52,7 @@ Thus, the output should be likes this:
       "value": 1,
       "concepts": ["reason1"],
     },
-  }
+  ]
 }
 </json>
 
@@ -90,7 +90,7 @@ This is an example of a question with a DIFFICULTY score of 0 because it correct
 {
   "difficulty": 1,
   "snippet": "package main\nimport fmt\nfunc main() {\n  fmt.Println(\"go\" + \"lang\")\n}",
-  "choices": {
+  "choices": [
     "Doesn't compile": {
       "value": -1,
       "concepts": ["complilation"],
@@ -103,7 +103,7 @@ This is an example of a question with a DIFFICULTY score of 0 because it correct
       "value": 1,
       "concepts": [],
     },
-  }
+  ]
 }
 </json>
 
@@ -121,7 +121,7 @@ A variation of this problem of difficulty 1 would change the snippet by removing
 {
   "difficulty": 3,
   "snippet": "package main\n\nimport \"fmt\"\n\nfunc triple(x int) int {\n    return 3 * x\n}\n\nfunc main() {\n    x := 5\n    x = 10\n    fmt.Println(triple(x))\n}",
-  "choices": {
+  "choices": [
     "Prints 5": {
       "value": -1,
       "concepts": ["functions"]
@@ -134,7 +134,7 @@ A variation of this problem of difficulty 1 would change the snippet by removing
       "value": 0,
       "concepts": ["variable assignment", "functions"]
     }
-  }
+  ]
 }
 </json>
 
@@ -144,7 +144,7 @@ A variation of this problem of difficulty 1 would change the snippet by removing
 {
   "difficulty": 3,
   "snippet": "package main\n\nimport \"fmt\"\n\ntype Shape interface {\n\tArea() int\n}\n\ntype Rectangle struct {\n\tWidth, Height int\n}\n\nfunc (r Rectangle) Area() int {\n\treturn r.Width * r.Height\n}\n\nfunc main() {\n\tr := Rectangle{Width: 3, Height: 4}\n\tvar s Shape = r\n\tfmt.Println(s.Area())\n}",
-  "choices": {
+  "choices": [
     "Doesn't compile": {
       "value": -1,
       "concepts": ["interfaces", "methods"]
@@ -157,7 +157,7 @@ A variation of this problem of difficulty 1 would change the snippet by removing
       "value": 1,
       "concepts": []
     }
-  }
+  ]
 }
 </json>
 
@@ -167,7 +167,7 @@ A variation of this problem of difficulty 1 would change the snippet by removing
 {
   "difficulty": 4,
   "snippet": "package main\n\nimport \"fmt\"\n\nfunc maker() func() int {\n\tnum := 0\n\treturn func() int {\n\t\tnum += 1\n\t\treturn num\n\t}\n}\n\nfunc main() {\n\tcounter := maker()\n\tfmt.Println(counter())\n\tfmt.Println(counter())\n}",
-  "choices": {
+  "choices": [
     "Prints 1 then 1": {
       "value": 0,
       "concepts": ["closures"]
@@ -180,7 +180,7 @@ A variation of this problem of difficulty 1 would change the snippet by removing
       "value": -1,
       "concepts": ["functions"]
     }
-  }
+  ]
 }
 </json>
 
@@ -195,7 +195,7 @@ Here the reader needs to be aware that:
 {
   "difficulty": 6,
   "snippet": "package main\n\nimport (\n\tfmt\n)\n\nfunc main() {\n\tfor i := 0; i < len(\"π\"); i++ {\n\t\tfmt.Println(i)\n\t}\n}",
-  "choices": {
+  "choices": [
     "Prints 0": {
       "value": 0,
       "concepts": ["for loops iterate by byte", "UTF-8 and how it feeds into Go"],
@@ -208,7 +208,7 @@ Here the reader needs to be aware that:
       "value": -1,
       "concepts": ["Go is compatible with UTF-8", "compilation"],
     },
-  }
+  ]
 }
 </json>
 
@@ -218,7 +218,7 @@ Here the reader needs to be aware that:
 {
   "difficulty": 7,
   "snippet": "package main\n\nimport \"fmt\"\n\nfunc main() {\n  x := []int{1, 2, 3}\n  y := x\n  y[1] = 5\n  fmt.Println(x[1])\n}",
-  "choices": {
+  "choices": [
     "Prints 2": {
       "value": -1,
       "concepts": ["slices are reference types"]
@@ -231,7 +231,7 @@ Here the reader needs to be aware that:
       "value": 0,
       "concepts": ["slice manipulation"]
     }
-  }
+  ]
 }
 </json>
 
@@ -241,7 +241,7 @@ Here the reader needs to be aware that:
 {
   "difficulty": 9,
   "snippet": "package main\n\nimport \"fmt\"\n\nfunc main() {\n  c := make(chan int)\n\n  go func() {\n    c <- 1\n  }()\n\n  go func() {\n    c <- 2\n  }()\n\n  fmt.Println(<-c)\n  fmt.Println(<-c)\n}",
-  "choices": {
+  "choices": [
     "Prints 1 then 2": {
       "value": 1,
       "concepts": []
@@ -254,7 +254,7 @@ Here the reader needs to be aware that:
       "value": -1,
       "concepts": ["goroutines", "channels"]
     }
-  }
+  ]
 }
 </json>
 
