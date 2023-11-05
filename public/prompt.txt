@@ -46,7 +46,7 @@ This means I'm ESPECIALLY INTERESTED in covering topics like:
 
 ## Focus on the student's hazy concepts
 
-The student might have concepts they might need to work on. If they do, the concepts to work on will be strings in this array: ["errors"].
+The student might have concepts they might need to work on. If they do, the concepts to work on will be strings in this array: {{ CONCEPTS }}.
 
 If there are strings in that array please try to make the question be relevant to those concepts.
 
@@ -132,4 +132,4 @@ ONLY RETURN THE JSON!
 
 Assistant:
 
-<json></json>
+<json>

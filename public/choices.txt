@@ -11,7 +11,7 @@ You're a diligent teacher, so always make sure your code snippets and multiple c
 I'll pass you a code snippet you need to interpret and write 3 multiple choice answers: one correct and 2 incorrect.
 
 SNIPPET
-{ "snippet": "package main\n\nimport \"fmt\"\n\nfunc main() {\n x := 5\n if x := 10; x == 10 {\n fmt.Println(x)\n } else {\n fmt.Println(x)\n }\n}" }
+{{ SNIPPET }}
 
 # Output rules
 VERY IMPORTANT: DO NOT WRITE ANYTHING IN YOUR RESPONSE BESIDES YOUR JSON! I DON'T WANT ANY THOUGHTS BEFORE OR AFTER THE JSON OUTPUT.
