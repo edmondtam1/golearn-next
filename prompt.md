@@ -206,7 +206,7 @@ Here the reader needs to be aware that:
 }
 ```
 
-## Difficulty score of 7
+## Difficulty score of 7
 
 ```json
 {
@@ -234,25 +234,7 @@ Here the reader needs to be aware that:
 ```json
 {
   "difficulty": 9,
-  "snippet": "package main
-
-import \"fmt\"
-
-func main() {
-  c := make(chan int)
-
-  go func() {
-    c <- 1
-  }()
-
-  go func() {
-    c <- 2
-  }()
-
-  fmt.Println(<-c)
-  fmt.Println(<-c)
-}
-",
+  "snippet": "package main\n\nimport \"fmt\"\n\nfunc main() {\n  c := make(chan int)\n\n  go func() {\n    c <- 1\n  }()\n\n  go func() {\n    c <- 2\n  }()\n\n  fmt.Println(<-c)\n  fmt.Println(<-c)\n}",
   "choices": {
     "Prints 1 then 2": {
       "value": 1,
