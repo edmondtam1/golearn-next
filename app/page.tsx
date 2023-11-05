@@ -1,28 +1,42 @@
 "use client";
 
 import { useChat } from "ai/react";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
+// import ReactMarkdown from "react-markdown";
+// import prompt from "../prompt.txt";
+// import * as prompt from "../prompt.txt";
+// const someTextContent = require('./some.txt');
+const prompt = require("/prompt.txt");
 
 export default function Chat() {
-  let { input, messages, handleInputChange, handleSubmit } = useChat();
+  let { append, input, messages, setInput, handleSubmit } = useChat();
   const [buttonText, setButtonText] = useState("Submit your answer");
+  const [promptText, setPromptText] = useState("");
   const options = [
     "This is a good answer",
     "This is a neutral answer",
     "This is a bad one",
   ];
 
+  console.log("prompt: ", prompt);
   const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
+    console.log("input: ", input);
+    console.log("prompt: ", prompt);
     if (buttonText === "Submit your answer") {
       setButtonText("Next question");
       // TODO: grade the result here and store the information in the next prompt
     } else {
-      handleSubmit(e);
+      // append();
       setButtonText("Submit your answer"); // Reset the button text for the next question
     }
   };
+
+  // useEffect(() => {
+  //   fetch(prompt)
+  //     .then((res) => res.text())
+  //     .then((text) => setPromptText(text));
+  // });
 
   console.log(messages);
   return (
@@ -57,7 +71,7 @@ export default function Chat() {
                 className="mr-2 opacity-0 absolute"
                 value={option}
                 checked={input === option}
-                onChange={handleInputChange}
+                onChange={() => setInput(option)}
               />
               <span className="ml-2">{option}</span>
             </label>
@@ -72,4 +86,12 @@ export default function Chat() {
       </form>
     </div>
   );
+}
+
+export async function getStaticProps() {
+  return {
+    props: {
+      prompt: prompt,
+    },
+  };
 }
