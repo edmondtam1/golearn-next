@@ -5,17 +5,32 @@ import { AIMessage, HumanMessage } from "langchain/schema";
 export const runtime = "edge";
 
 export async function POST(req: Request) {
-  const { messages } = await req.json();
-  const { stream, handlers } = LangChainStream();
+  console.log("req", req);
+  if (!req.body) {
+    console.log("No body");
+    return new Response("No body", { status: 400 });
+  }
 
-  const llm = new ChatAnthropic({
-    streaming: true,
-    anthropicApiKey: process.env.ANTHROPIC_API_KEY,
+  const { prompt } = await req.json();
+
+  const response = await fetch("https://api.anthropic.com/v1/complete", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "x-api-key": process.env.ANTHROPIC_API_KEY || "",
+      "anthropic-version": "2023-06-01",
+    },
+    body: JSON.stringify({
+      prompt: `Human: ${prompt}\n\nAssistant:`,
+      model: "claude-v2",
+      max_tokens_to_sample: 300,
+      temperature: 0.9,
+      stream: true,
+    }),
   });
+  console.log("response", response);
+  const stream = AnthropicStream(response);
 
-  llm
-    .call([new HumanMessage(messages.content)], {}, [handlers])
-    .catch(console.error);
-
+  // Respond with the stream
   return new StreamingTextResponse(stream);
 }
