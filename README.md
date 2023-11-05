@@ -11,5 +11,5 @@ When they answer a question incorrectly, the tool records the concepts that they
 ## How to run
 
 1. Clone this repo
-2. Run `npm install`
-3. Run `npm dev`
+2. Run `pnpm install`
+3. Run `pnpm dev`
