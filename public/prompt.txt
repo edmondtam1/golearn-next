@@ -91,18 +91,18 @@ This is an example of a question with a DIFFICULTY score of 0 because it correct
   "difficulty": 1,
   "snippet": "package main\nimport fmt\nfunc main() {\n  fmt.Println(\"go\" + \"lang\")\n}",
   "choices": [
-    "Doesn't compile": {
+    {"Doesn't compile": {
       "value": -1,
       "concepts": ["complilation"],
-    },
-    "Prints go lang": {
+    }},
+    {"Prints go lang": {
       "value": 0,
       "concepts": ["string operations"],
-    },
-    "Prints golang": {
+    }},
+    {"Prints golang": {
       "value": 1,
       "concepts": [],
-    },
+    }},
   ]
 }
 </json>
@@ -122,18 +122,18 @@ A variation of this problem of difficulty 1 would change the snippet by removing
   "difficulty": 3,
   "snippet": "package main\n\nimport \"fmt\"\n\nfunc triple(x int) int {\n    return 3 * x\n}\n\nfunc main() {\n    x := 5\n    x = 10\n    fmt.Println(triple(x))\n}",
   "choices": [
-    "Prints 5": {
+    {"Prints 5": {
       "value": -1,
       "concepts": ["functions"]
-    },
-    "Prints 30": {
+    }},
+    {"Prints 30": {
       "value": 1,
       "concepts": []
-    },
-    "Prints 15": {
+    }},
+    {"Prints 15": {
       "value": 0,
       "concepts": ["variable assignment", "functions"]
-    }
+    }}
   ]
 }
 </json>
@@ -145,18 +145,18 @@ A variation of this problem of difficulty 1 would change the snippet by removing
   "difficulty": 3,
   "snippet": "package main\n\nimport \"fmt\"\n\ntype Shape interface {\n\tArea() int\n}\n\ntype Rectangle struct {\n\tWidth, Height int\n}\n\nfunc (r Rectangle) Area() int {\n\treturn r.Width * r.Height\n}\n\nfunc main() {\n\tr := Rectangle{Width: 3, Height: 4}\n\tvar s Shape = r\n\tfmt.Println(s.Area())\n}",
   "choices": [
-    "Doesn't compile": {
+    {"Doesn't compile": {
       "value": -1,
       "concepts": ["interfaces", "methods"]
-    },
-    "Prints 3": {
+    }},
+    {"Prints 3": {
       "value": 0,
       "concepts": ["method receivers"]
-    },
-    "Prints 12": {
+    }},
+    {"Prints 12": {
       "value": 1,
       "concepts": []
-    }
+    }}
   ]
 }
 </json>
@@ -168,18 +168,18 @@ A variation of this problem of difficulty 1 would change the snippet by removing
   "difficulty": 4,
   "snippet": "package main\n\nimport \"fmt\"\n\nfunc maker() func() int {\n\tnum := 0\n\treturn func() int {\n\t\tnum += 1\n\t\treturn num\n\t}\n}\n\nfunc main() {\n\tcounter := maker()\n\tfmt.Println(counter())\n\tfmt.Println(counter())\n}",
   "choices": [
-    "Prints 1 then 1": {
+    {"Prints 1 then 1": {
       "value": 0,
       "concepts": ["closures"]
-    },
-    "Prints 1 then 2": {
+    }},
+    {"Prints 1 then 2": {
       "value": 1,
       "concepts": []
-    },
-    "Doesn't compile": {
+    }},
+    {"Doesn't compile": {
       "value": -1,
       "concepts": ["functions"]
-    }
+    }}
   ]
 }
 </json>
@@ -196,18 +196,18 @@ Here the reader needs to be aware that:
   "difficulty": 6,
   "snippet": "package main\n\nimport (\n\tfmt\n)\n\nfunc main() {\n\tfor i := 0; i < len(\"π\"); i++ {\n\t\tfmt.Println(i)\n\t}\n}",
   "choices": [
-    "Prints 0": {
+    {"Prints 0": {
       "value": 0,
       "concepts": ["for loops iterate by byte", "UTF-8 and how it feeds into Go"],
-    },
-    "Prints 0 and 1": {
+    }},
+    {"Prints 0 and 1": {
       "value": 1,
       "concepts": [],
-    },
-    "Doesn't compile": {
+    }},
+    {"Doesn't compile": {
       "value": -1,
       "concepts": ["Go is compatible with UTF-8", "compilation"],
-    },
+    }},
   ]
 }
 </json>
@@ -219,18 +219,18 @@ Here the reader needs to be aware that:
   "difficulty": 7,
   "snippet": "package main\n\nimport \"fmt\"\n\nfunc main() {\n  x := []int{1, 2, 3}\n  y := x\n  y[1] = 5\n  fmt.Println(x[1])\n}",
   "choices": [
-    "Prints 2": {
+    {"Prints 2": {
       "value": -1,
       "concepts": ["slices are reference types"]
-    },
-    "Prints 5": {
+    }},
+    {"Prints 5": {
       "value": 1,
       "concepts": []
-    },
-    "Causes a runtime panic": {
+    }},
+    {"Causes a runtime panic": {
       "value": 0,
       "concepts": ["slice manipulation"]
-    }
+    }}
   ]
 }
 </json>
@@ -242,18 +242,18 @@ Here the reader needs to be aware that:
   "difficulty": 9,
   "snippet": "package main\n\nimport \"fmt\"\n\nfunc main() {\n  c := make(chan int)\n\n  go func() {\n    c <- 1\n  }()\n\n  go func() {\n    c <- 2\n  }()\n\n  fmt.Println(<-c)\n  fmt.Println(<-c)\n}",
   "choices": [
-    "Prints 1 then 2": {
+    {"Prints 1 then 2": {
       "value": 1,
       "concepts": []
-    },
-    "Prints 2 then 1": {
+    }},
+    {"Prints 2 then 1": {
       "value": 0,
       "concepts": ["channel synchronization"]
-    },
-    "Deadlocks": {
+    }},
+    {"Deadlocks": {
       "value": -1,
       "concepts": ["goroutines", "channels"]
-    }
+    }}
   ]
 }
 </json>
